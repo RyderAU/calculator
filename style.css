@@ -1,0 +1,23 @@
+.grid-container {
+  display: grid;
+  /* centre vertically and horizontally */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  /* centre vertically and horizontally */
+  width: 500px;
+  height: 500px;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(5, auto);
+  grid-gap: 10px;
+}
+
+.grid-item {
+  background-color: lightgrey;
+}
+
+.field {
+  grid-column: 1 / -1;
+  border: 1px solid black;
+}
