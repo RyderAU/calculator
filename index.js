@@ -1,3 +1,5 @@
+let a, b, operation;
+const display = document.querySelector(".field");
 // create functions for operations
 // add
 const add = (a, b) => {
@@ -27,3 +29,14 @@ const operate = (operation, a, b) => {
     return divide(a, b);
   }
 };
+
+document.querySelectorAll(".number").forEach((item) => {
+  item.addEventListener("click", (e) => {
+    // set display to have that number
+    display.innerText += e.target.innerText;
+  });
+});
+
+document.querySelector(".clear-btn").addEventListener("click", (e) => {
+  display.innerText = "";
+});
