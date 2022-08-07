@@ -44,6 +44,14 @@ document.querySelectorAll(".number").forEach((item) => {
 
 document.querySelectorAll(".operator").forEach((item) => {
   item.addEventListener("click", (e) => {
+
+    // evaluate previous
+    if (operation) {
+      // repetition
+      display.innerText = `${operate(operation, a, parseInt(display.innerText))}`;
+      a = parseInt(display.innerText);
+    }
+    
     console.log(e);
     a = parseInt(display.innerText);
     operation = e.target.innerText;
@@ -53,8 +61,10 @@ document.querySelectorAll(".operator").forEach((item) => {
 });
 
 document.querySelector(".equals").addEventListener("click", (e) => {
-  display.innerText = `${operate(operation, a, parseInt(display.innerText))}`;
-  a = parseInt(display.innerText);
+  if (a) {
+    display.innerText = `${operate(operation, a, parseInt(display.innerText))}`;
+    a = parseInt(display.innerText);
+  }
 });
 
 document.querySelector(".clear-btn").addEventListener("click", (e) => {
