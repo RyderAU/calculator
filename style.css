@@ -18,7 +18,8 @@
   width: 375px;
   height: 20%;
   border: 1px solid black;
-  font-size: 6em;
+  font-size: 4em;
+  word-wrap: scroll;
 }
 
 .grid-container {

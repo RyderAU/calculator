@@ -1,4 +1,4 @@
-let a, b, operation, lastPressed;
+let a, b, operation, lastPressed, res;
 const display = document.querySelector(".display");
 // create functions for operations
 // add
@@ -15,6 +15,10 @@ const multiply = (a, b) => {
 };
 // divide
 const divide = (a, b) => {
+  if (b == 0) {
+    display.innerText = 'hahaha';
+    return
+  }
   return a / b;
 };
 // operate
@@ -36,7 +40,9 @@ document.querySelectorAll(".number").forEach((item) => {
     if (lastPressed == "operation") {
       display.innerText = e.target.innerText;
     } else {
-      display.innerText += e.target.innerText;
+      if ((display.innerText).length < 8) {
+        display.innerText += e.target.innerText;
+      } 
     }
     lastPressed = "number";
   });
@@ -48,22 +54,26 @@ document.querySelectorAll(".operator").forEach((item) => {
     // evaluate previous
     if (operation) {
       // repetition
-      display.innerText = `${operate(operation, a, parseInt(display.innerText))}`;
-      a = parseInt(display.innerText);
+      display.innerText = `${operate(operation, Number(a), Number(display.innerText))}`;
+      a = Number(display.innerText);
     }
     
     console.log(e);
-    a = parseInt(display.innerText);
+    a = Number(display.innerText);
     operation = e.target.innerText;
-    lastPressed = "operation"
+    lastPressed = "operation";
     console.log(operation);
   });
 });
 
 document.querySelector(".equals").addEventListener("click", (e) => {
-  if (a) {
-    display.innerText = `${operate(operation, a, parseInt(display.innerText))}`;
-    a = parseInt(display.innerText);
+  if (display.innerText != "") {
+    res = operate(operation, Number(a), Number(display.innerText))
+    if (!Number.isInteger(res)) {
+      res = res.toFixed(8);
+    }
+    display.innerText = res;
+    a = Number(display.innerText);
   }
 });
 
