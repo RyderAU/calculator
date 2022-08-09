@@ -1,5 +1,5 @@
 let a, b, operation, lastPressed;
-const display = document.querySelector(".field");
+const display = document.querySelector(".display");
 // create functions for operations
 // add
 const add = (a, b) => {
@@ -69,5 +69,6 @@ document.querySelector(".equals").addEventListener("click", (e) => {
 
 document.querySelector(".clear-btn").addEventListener("click", (e) => {
   display.innerText = "";
-  // think I need to wipe more data
+  a = 0;
+  operation = "";
 });
