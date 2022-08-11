@@ -9,6 +9,7 @@
   height: 600px;
   background-color: #1EA896;
   border: 3px solid #523F38;
+  border-radius: 5px;
 }
 
 .display {

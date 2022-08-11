@@ -16,7 +16,7 @@ const multiply = (a, b) => {
 // divide
 const divide = (a, b) => {
   if (b == 0) {
-    display.innerText = 'hahaha';
+    display.innerText = 'wut :/';
     return
   }
   return a / b;
@@ -54,7 +54,11 @@ document.querySelectorAll(".operator").forEach((item) => {
     // evaluate previous
     if (operation) {
       // repetition
-      display.innerText = `${operate(operation, Number(a), Number(display.innerText))}`;
+      res = operate(operation, Number(a), Number(display.innerText))
+      if (!Number.isInteger(res)) {
+        res = res.toFixed(8);
+      }
+      display.innerText = res;
       a = Number(display.innerText);
     }
     
