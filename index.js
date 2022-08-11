@@ -48,6 +48,13 @@ document.querySelectorAll(".number").forEach((item) => {
   });
 });
 
+document.querySelector(".decimal").addEventListener("click", (e) => {
+  // check if there is already a decimal in display
+  if (display.innerText)
+  console.log('woah');
+  }
+);
+
 document.querySelectorAll(".operator").forEach((item) => {
   item.addEventListener("click", (e) => {
 
