@@ -50,10 +50,10 @@ document.querySelectorAll(".number").forEach((item) => {
 
 document.querySelector(".decimal").addEventListener("click", (e) => {
   // check if there is already a decimal in display
-  if (display.innerText)
-  console.log('woah');
+  if (!(display.innerText).includes(".")) {
+    display.innerText += e.target.innerText;
   }
-);
+});
 
 document.querySelectorAll(".operator").forEach((item) => {
   item.addEventListener("click", (e) => {
