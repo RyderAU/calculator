@@ -93,3 +93,7 @@ document.querySelector(".clear-btn").addEventListener("click", (e) => {
   a = 0;
   operation = "";
 });
+
+document.querySelector(".delete-btn").addEventListener("click", (e) => {
+  display.innerText = String(display.innerText).substring(0, String(display.innerText).length - 1);
+});
