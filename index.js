@@ -1,6 +1,8 @@
-let a, b, operation, lastPressed, res;
+// DECLARATIONS
+let a, b, operation, operationPressed = 0, res;
 const display = document.querySelector(".display");
-// create functions for operations
+
+// OPERATION FUNCTIONS
 // add
 const add = (a, b) => {
   return a + b;
@@ -17,11 +19,12 @@ const multiply = (a, b) => {
 const divide = (a, b) => {
   if (b == 0) {
     display.innerText = 'wut :/';
-    return
+    return;
   }
   return a / b;
 };
-// operate
+
+// OPERATE FUNCTION
 const operate = (operation, a, b) => {
   if (operation == "+") {
     return add(a, b);
@@ -36,15 +39,18 @@ const operate = (operation, a, b) => {
 
 document.querySelectorAll(".number").forEach((item) => {
   item.addEventListener("click", (e) => {
-    // set display to have that number
-    if (lastPressed == "operation") {
+    // check if last button pressed was an operation
+    if (operationPressed) {
+      // completely replace display text
       display.innerText = e.target.innerText;
     } else {
+      // add number to existing display text (provided there is space)
       if ((display.innerText).length < 8) {
         display.innerText += e.target.innerText;
       } 
     }
-    lastPressed = "number";
+    // we just clicked a number so set operationPressed to 0
+    operationPressed = 0;
   });
 });
 
@@ -57,23 +63,23 @@ document.querySelector(".decimal").addEventListener("click", (e) => {
 
 document.querySelectorAll(".operator").forEach((item) => {
   item.addEventListener("click", (e) => {
-
-    // evaluate previous
-    if (operation) {
-      // repetition
+    // if 'a' exists, evaluate the previous expression first
+    if (a) {
+      // operate with our previously stored 'a' variable and the current number in the display as 'b'
       res = operate(operation, Number(a), Number(display.innerText))
+      // if our result is a float
       if (!Number.isInteger(res)) {
+        // cap at 8 decimal places
         res = res.toFixed(8);
       }
       display.innerText = res;
       a = Number(display.innerText);
     }
     
-    console.log(e);
+    // store the number inputted before the operation
     a = Number(display.innerText);
     operation = e.target.innerText;
-    lastPressed = "operation";
-    console.log(operation);
+    operationPressed = 1;
   });
 });
 
@@ -84,16 +90,20 @@ document.querySelector(".equals").addEventListener("click", (e) => {
       res = Number(res.toFixed(8));
     }
     display.innerText = res;
-    a = Number(display.innerText);
+    a = null;
+    operationPressed = 0;
   }
 });
 
 document.querySelector(".clear-btn").addEventListener("click", (e) => {
+  // reset all values
   display.innerText = "";
-  a = 0;
+  a = null;
   operation = "";
+  operationPressed = 0;
 });
 
 document.querySelector(".delete-btn").addEventListener("click", (e) => {
+  // convert display value to a string of length - 1
   display.innerText = String(display.innerText).substring(0, String(display.innerText).length - 1);
 });
