@@ -81,7 +81,7 @@ document.querySelector(".equals").addEventListener("click", (e) => {
   if (display.innerText != "") {
     res = operate(operation, Number(a), Number(display.innerText))
     if (!Number.isInteger(res)) {
-      res = res.toFixed(8);
+      res = Number(res.toFixed(8));
     }
     display.innerText = res;
     a = Number(display.innerText);
